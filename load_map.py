@@ -8,8 +8,7 @@ from bokeh.palettes import Plasma256 as palette
 
 
 api_key = 'AIzaSyCCKJAMQRcfWjlXJMQhzsVA22FbAGqEDZM'
-# center point for starting map TODO: change to first values from table
-center_map_lat, center_map_lng = (51.834070, 19.355114)
+
 
 trees_df = pd.read_csv('drzewa.csv')
 
@@ -39,8 +38,5 @@ def load_google_map(lat, lng, zoom=17, map_type='roadmap'):
     color_bar = ColorBar(color_mapper=mapper['transform'], label_standoff=14,
                          location=(0, 0), title="Tree height [m]")
     gmap_obj.add_layout(color_bar, 'right')
-    show(gmap_obj)
+
     return gmap_obj
-
-
-load_google_map(center_map_lat, center_map_lng)
