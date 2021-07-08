@@ -1,0 +1,64 @@
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "collab-config-9ygg"
+  namespace: "default"
+  labels:
+    app: "collab"
+data:
+  GOOGLE_APPLICATION_CREDENTIALS: "/var/run/secret/cloud.google.com/collabothon21.json"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "collab"
+  namespace: "default"
+  labels:
+    app: "collab"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "collab"
+  template:
+    metadata:
+      labels:
+        app: "collab"
+    spec:
+      containers:
+      - name: "trees-sha256-1"
+        image: "gcr.io/collabothon21-team-a/trees@sha256:48e8fd2473a9f64480ba84c1835f31b02eb90dd8074ae2f308dd7c551cd0cc4b"
+        env:
+        - name: "GOOGLE_APPLICATION_CREDENTIALS"
+          valueFrom:
+            configMapKeyRef:
+              key: "GOOGLE_APPLICATION_CREDENTIALS"
+              name: "collab-config-9ygg"
+        volumeMounts:
+            - name: "service-account"
+              mountPath: "/var/run/secret/cloud.google.com"
+      volumes:
+        - name: "service-account"
+          secret:
+            secretName: "collab-trees-key"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "collab-hpa-eyuq"
+  namespace: "default"
+  labels:
+    app: "collab"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "collab"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
