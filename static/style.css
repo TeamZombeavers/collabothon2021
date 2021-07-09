@@ -15,9 +15,17 @@ body {
   text-align: center;
 }
 
-h1{
+
+
+
+/* p{
+  position: relative;
+  top: 50px;
+  text-align: center;
   color: white;
-}
+  font-size: 45px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+} */
 .map{
   top: 150px;
   margin: 0 auto;
@@ -108,12 +116,13 @@ h1{
 .tree1 {
   position:absolute;
   bottom:180px;
-  left:11%;
+  left:1%;
 }
 
 .tree2 {
   position:absolute;
-  bottom:160px;
+  /* bottom:160px; */
+  top:10px;
   left:calc(12% + 16px);
 }
 
@@ -126,13 +135,13 @@ h1{
 .tree4 {
   position:absolute;
   bottom:185px;
-  right:17.5%;
+  right:1.5%;
 }
 
 .tree5 {
   position:absolute;
   bottom:185px;
-  right:9.5%;
+  right:3.5%;
 }
 
 
