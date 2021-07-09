@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def bokeh():
 
-    center_map_lat, center_map_lng = (51.834070, 19.355114) #TODO: change this as first value of dataset or something
+    center_map_lat, center_map_lng = (51.75502945945417, 19.436975611786895) #TODO: change this as first value of dataset or something
     fig = load_google_map(center_map_lat, center_map_lng)
     
     script, div = components(fig)
