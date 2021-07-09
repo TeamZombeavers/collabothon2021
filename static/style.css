@@ -122,7 +122,7 @@ body {
 .tree2 {
   position:absolute;
   /* bottom:160px; */
-  top:10px;
+  top:0px;
   left:calc(12% + 16px);
 }
 
