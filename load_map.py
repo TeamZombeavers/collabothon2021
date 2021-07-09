@@ -19,10 +19,11 @@ QUERY = (
 with open('static/map_style.txt', 'r') as style:
     map_style = style.read()
 
-def load_google_map(lat, lng, zoom=17, map_type='roadmap'):
+
+def load_google_map(lat, lng, zoom=14, map_type='roadmap'):
     client = bigquery.Client()
     gmap_options = GMapOptions(
-        lat=lat, lng=lng, map_type=map_type, zoom=zoom, styles = map_style
+        lat=lat, lng=lng, map_type=map_type, zoom=zoom, styles=map_style
     )
 
     hover = HoverTool(
