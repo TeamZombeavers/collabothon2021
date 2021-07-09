@@ -17,7 +17,7 @@ QUERY = (
 )
 
 
-def load_google_map():
+def load_scatter():
     client = bigquery.Client()
     data = client.query(QUERY).to_dataframe()
 
@@ -32,7 +32,7 @@ def load_google_map():
 
     mapper = linear_cmap('y', palette, 15., 40.)
 
-    scatter_plot = figure(plot_width=1000, plot_height=600)
+    scatter_plot = figure(plot_width=750, plot_height=500)
 
     scatter_plot.circle('x', 'y', line_width=2, color=mapper, source=pnts)
 

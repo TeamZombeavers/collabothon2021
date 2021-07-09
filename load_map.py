@@ -36,7 +36,7 @@ def load_google_map(lat, lng, zoom=14, map_type='roadmap'):
     )
 
     gmap_obj = gmap(api_key, gmap_options, title='Trees density',
-                    width=850, height=550, tools=[hover, 'reset', 'wheel_zoom', 'pan'])
+                    width=750, height=500, tools=[hover, 'reset', 'wheel_zoom', 'pan'])
     source = ColumnDataSource(client.query(QUERY).to_dataframe())
 
     mapper = linear_cmap('Height', palette, 1., 40.)

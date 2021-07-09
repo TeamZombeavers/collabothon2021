@@ -39,7 +39,7 @@ def load_map_with_patches(lat, lng):
     )
 
     map_plot = gmap(google_api_key='AIzaSyCCKJAMQRcfWjlXJMQhzsVA22FbAGqEDZM', map_options=map_options, title="Patches",
-                    width=850, height=550, tools=['reset', 'wheel_zoom', 'pan', hover])
+                    width=750, height=500, tools=['reset', 'wheel_zoom', 'pan', hover])
 
     pnts = ColumnDataSource(
         data=dict(
