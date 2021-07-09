@@ -16,11 +16,13 @@ QUERY = (
     f'FROM `{GCP_PROJECT}.{DATASET_NAME}.{TABLE_NAME}`'
 )
 
+with open('static/map_style.txt', 'r') as style:
+    map_style = style.read()
 
 def load_google_map(lat, lng, zoom=17, map_type='roadmap'):
     client = bigquery.Client()
     gmap_options = GMapOptions(
-        lat=lat, lng=lng, map_type=map_type, zoom=zoom,
+        lat=lat, lng=lng, map_type=map_type, zoom=zoom, styles = map_style
     )
 
     hover = HoverTool(
@@ -33,7 +35,7 @@ def load_google_map(lat, lng, zoom=17, map_type='roadmap'):
     )
 
     gmap_obj = gmap(api_key, gmap_options, title='Trees density',
-                    width=550, height=450, tools=[hover, 'reset', 'wheel_zoom', 'pan'])
+                    width=850, height=550, tools=[hover, 'reset', 'wheel_zoom', 'pan'])
     source = ColumnDataSource(client.query(QUERY).to_dataframe())
 
     mapper = linear_cmap('Height', palette, 1., 40.)

@@ -1,7 +1,3 @@
-body {
-    width: 100%;
-    background-color:rgb(14, 76, 192);
-}
 
 :root{
     --sky:#dacd6d;
@@ -13,8 +9,21 @@ body {
 
 
 body {
+  width: 100%;
   background:var(--sky);
   overflow-x:hidden;
+  text-align: center;
+}
+
+
+.map{
+  top: 150px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  border: rgb(43, 1, 1) 2px solid;
+  width: 850px;
+  box-shadow: 0 0 0 5px rgba(85, 25, 1, 0.623);
 }
 
 .ground {
@@ -103,3 +112,18 @@ body {
   bottom:185px;
   right:11.5%;
 }
+
+.tree4 {
+  position:absolute;
+  bottom:185px;
+  right:17.5%;
+}
+
+.tree5 {
+  position:absolute;
+  bottom:185px;
+  right:9.5%;
+}
+
+
+
