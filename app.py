@@ -3,6 +3,7 @@ from bokeh.resources import INLINE
 from flask import Flask, render_template
 
 from load_map import load_google_map
+from table import load_preview_data
 
 app = Flask(__name__)
 
@@ -18,6 +19,7 @@ def bokeh():
         'index.html',
         plot_script=script,
         plot_div=div,
+        table = load_preview_data(),
         js_resources=INLINE.render_js(),
         css_resources=INLINE.render_css(),
     ).encode(encoding='UTF-8')
