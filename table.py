@@ -10,10 +10,8 @@ TABLE_NAME = 'tree_patches'
 
 QUERY = (
     f'SELECT NDVI, TEMPERATURA, DRZEWA_POW, DRZEWA_POW_PROC '
-    f'FROM {GCP_PROJECT}.{DATASET_NAME}.{TABLE_NAME}'
+    f'FROM {GCP_PROJECT}.{DATASET_NAME}.{TABLE_NAME} LIMIT 100'
 )
-
-
 
 
 def load_preview_data():
@@ -27,5 +25,6 @@ def load_preview_data():
         TableColumn(field="DRZEWA_POW_PROC", title="DRZEWA_POW_PROC"),
 
     ]
-    data_table = DataTable(source=source, columns =columns,width=400, height=280)
+    data_table = DataTable(
+        source=source, columns=columns, width=750, height=500)
     return data_table

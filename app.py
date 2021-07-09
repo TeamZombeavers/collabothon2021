@@ -5,6 +5,7 @@ from flask import Flask, render_template
 
 from load_map import load_google_map
 from load_map_patches import load_map_with_patches
+from load_temp_scatter import load_scatter
 from table import load_preview_data
 
 app = Flask(__name__)
@@ -19,9 +20,8 @@ def bokeh():
     polygon_map = load_map_with_patches(center_map_lat, center_map_lng)
 
     fig = column(
-        row(trees_map),
-        row(polygon_map),
-        row(load_preview_data())
+        row(trees_map, load_preview_data()),
+        row(polygon_map, load_scatter()),
     )
 
     script, div = components(fig)
