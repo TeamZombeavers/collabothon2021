@@ -1,5 +1,5 @@
 from bokeh.io import show
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, HoverTool
 from bokeh.palettes import Plasma256 as palette
 from bokeh.plotting import figure
 from bokeh.transform import linear_cmap
@@ -23,6 +23,15 @@ def load_scatter():
 
     data.sort_values(by=["avg_temp"], inplace=True)
 
+    hover = HoverTool(
+        tooltips=[
+
+            ('temperature [C]', '@y'),
+            ('percentage of tree coverage [%]', '@x'),
+
+        ]
+    )
+
     pnts = ColumnDataSource(
         data=dict(
             x=data['trees'],
@@ -32,7 +41,8 @@ def load_scatter():
 
     mapper = linear_cmap('y', palette, 15., 40.)
 
-    scatter_plot = figure(plot_width=750, plot_height=500)
+    scatter_plot = figure(plot_width=750, plot_height=500, title='Trees coverage and temperature',
+                          tools=[hover, 'reset', 'wheel_zoom'])
 
     scatter_plot.circle('x', 'y', line_width=2, color=mapper, source=pnts)
 
